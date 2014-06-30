@@ -1,3 +1,5 @@
 *.pyc
 .idea
 dist
+build
+pyx509.egg-info
