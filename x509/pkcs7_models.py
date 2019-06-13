@@ -539,12 +539,22 @@ class NetscapeCertTypeExt(object):
 
 
 class AppleSubmissionCertificateExt(object):
-    def __init__(self, asn1_netscapeCertType):
+    def __init__(self, asn1_type):
         pass
 
 
 class AppleDevelopmentCertificateExt(object):
-    def __init__(self, asn1_netscapeCertType):
+    def __init__(self, asn1_type):
+        pass
+
+
+class MacApplicationSoftwareDevelopmentSigning(object):
+    def __init__(self, asn1_type):
+        pass
+
+
+class MacApplicationSoftwareSubmissionSigning(object):
+    def __init__(self, asn1_type):
         pass
 
 
@@ -565,6 +575,8 @@ class ExtensionType(object):
     NETSCAPE_CERT_TYPE = "netscapeCertTypeExt"
     APPLE_SUBMISSION_CERTIFICATE = "appleSubmissionCertificateExt"
     APPLE_DEVELOPMENT_CERTIFICATE = "appleDevelopmentCertificateExt"
+    MAC_APPLICATION_SOFTWARE_DEVELOPMENT_SIGNING = "macApplicationSoftwareDevelopmentSigningExt"
+    MAC_APPLICATION_SOFTWARE_SUBMISSION_SIGNING = "macApplicationSoftwareSubmissionSigningExt"
 
 
 class ExtensionTypes(object):
@@ -595,8 +607,11 @@ class Extension(object):
         "2.5.29.36": (PolicyConstraints(),            lambda v: PolicyConstraintsExt(v),              ExtensionType.POLICY_CONSTRAINTS),
         "2.5.29.30": (NameConstraints(),              lambda v: NameConstraintsExt(v),                ExtensionType.NAME_CONSTRAINTS),
         "2.16.840.1.113730.1.1": (NetscapeCertType(), lambda v: NetscapeCertTypeExt(v),               ExtensionType.NETSCAPE_CERT_TYPE),
+        # From https://images.apple.com/certificateauthority/pdf/Apple_WWDR_CPS_v1.17.pdf
         "1.2.840.113635.100.6.1.4": (None,            lambda v: AppleSubmissionCertificateExt(v),     ExtensionType.APPLE_SUBMISSION_CERTIFICATE),
         "1.2.840.113635.100.6.1.2": (None,            lambda v: AppleDevelopmentCertificateExt(v),     ExtensionType.APPLE_DEVELOPMENT_CERTIFICATE),
+        "1.2.840.113635.100.6.1.12": (None,           lambda v: MacApplicationSoftwareDevelopmentSigning(v),     ExtensionType.MAC_APPLICATION_SOFTWARE_DEVELOPMENT_SIGNING),
+        "1.2.840.113635.100.6.1.7": (None,            lambda v: MacApplicationSoftwareSubmissionSigning(v),      ExtensionType.MAC_APPLICATION_SOFTWARE_SUBMISSION_SIGNING),
     }
 
     def __init__(self, extension):
