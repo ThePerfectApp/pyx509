@@ -3,7 +3,7 @@ from setuptools import find_packages
 
 setup(
     name='pyx509',
-    version='0.1.3.tpa',
+    version='0.1.4.tpa',
     packages=find_packages(),
     license='GNU Library General Public License',
     long_description=open('README').read(),
